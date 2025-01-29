@@ -1,64 +1,43 @@
-/* Global CSS, you probably don't need that */
-
-.clearfix:after {
-  clear: both;
-  content: "";
-  display: block;
-  height: 0;
-}
-
 .container {
   margin-top: 58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
 }
 
 .wrapper {
-  display: table-cell;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
-.wrapper,
-span {
-  font-family: monospace;
-  letter-spacing: -0.9px;
+/* Mantém os steps alinhados corretamente */
+.arrow-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+  position: relative;
 }
 
-.nav {
-  margin-top: 40px;
-}
-
-.pull-right {
-  float: right;
-}
-
-a,
-a:active {
-  color: #333;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #999;
-}
-
-/* Breadcrups CSS */
-
+/* Define os estilos dos steps */
 .arrow-steps .step {
   font-size: 14px;
   text-align: center;
   color: #666;
   cursor: default;
   margin: 5px 3px;
-  padding: 10px 10px 10px 30px;
-  float: left;
-  position: relative;
-
+  padding: 10px 20px;
   background-color: #d9e3f7;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  transition: background-color 0.2s ease;
+  border-radius: 4px;
+  white-space: nowrap;
+  position: relative;
 }
 
+/* Mantém as setas entre os steps */
 .arrow-steps .step:after,
 .arrow-steps .step:before {
   content: " ";
@@ -81,40 +60,12 @@ a:hover {
   z-index: 0;
 }
 
+/* Mantém a sequência dos steps */
 .arrow-steps .step:first-child:before {
   border: none;
 }
 
-.arrow-steps .step:first-child {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-
-.arrow-steps .step span {
-  position: relative;
-}
-
-.arrow-steps .step span:before {
-  opacity: 0;
-  content: "✔";
-  position: absolute;
-  top: -2px;
-  left: -10px;
-}
-
-.arrow-steps .step.done span:before {
-  opacity: 1;
-  -webkit-transition: opacity 0.3s ease 0.5s;
-  -moz-transition: opacity 0.3s ease 0.5s;
-  -ms-transition: opacity 0.3s ease 0.5s;
-  transition: opacity 0.3s ease 0.5s;
-}
-
-.arrow-steps .step.current {
-  color: #fff;
-  background-color: #23468c;
-}
-
+/* Steps concluídos */
 .arrow-steps .step.done {
   background-color: lawngreen;
 }
@@ -122,6 +73,52 @@ a:hover {
 .arrow-steps .step.done:after {
   border-left: 17px solid lawngreen;
 }
+
+/* Step atual */
+.arrow-steps .step.current {
+  background-color: #23468c;
+  color: white;
+}
+
 .arrow-steps .step.current:after {
   border-left: 17px solid #23468c;
+}
+
+/* 🔥 Mantém "OU" e "Aberto sem STR" exatamente abaixo de "Online - Grade Completa" */
+.separator-container {
+  position: absolute;
+  top: calc(100% + 20px); /* 🔥 Garante que fica logo abaixo */
+  left: 34%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 🔥 "OU" formatado corretamente */
+.separator {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* 🔥 "Aberto sem STR" sempre abaixo do "OU" */
+.extra-step {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+/* 🔥 Ajuste responsivo */
+@media screen and (max-width: 1024px) {
+  .separator-container {
+    position: relative;
+    width: auto;
+    margin-top: 20px;
+  }
+
+  .extra-step {
+    justify-content: center;
+    width: 100%;
+  }
 }
