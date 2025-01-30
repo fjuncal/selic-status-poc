@@ -73,11 +73,6 @@
   z-index: 0;
 }
 
-/* 🔥 Mantém a sequência dos steps como estava antes */
-.arrow-steps .step:first-child:before {
-  border: none;
-}
-
 /* 🔥 Mantém os steps concluídos com a cor original */
 .arrow-steps .step.done {
   background-color: lawngreen;
@@ -87,24 +82,7 @@
   border-left: 14px solid lawngreen;
 }
 
-/* 🔥 Restaura o ✔ na frente do texto */
-.arrow-steps .step.done span {
-  position: relative;
-  padding-left: 20px; /* 🔥 Dá espaço para o ✔ */
-}
-
-.arrow-steps .step.done span:before {
-  content: "✔";
-  font-size: 14px;
-  font-weight: bold;
-  color: white; /* 🔥 Agora o ✔ é branco como antes */
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* 🔥 Mantém o step atual com destaque */
+/* 🔥 Mantém o step atual com destaque azul */
 .arrow-steps .step.current {
   background-color: #23468c;
   color: white;
@@ -114,22 +92,21 @@
   border-left: 14px solid #23468c;
 }
 
+/* 🔥 Cinza escuro para os steps ignorados */
+.step.ignored {
+  background-color: #b0b0b0;
+  opacity: 0.5;
+}
+
 /* 🔥 "OU" agora tem mais espaçamento para não ficar grudado */
 .separator {
   font-weight: bold;
   text-align: center;
   margin-bottom: 5px;
-  margin-top: 15px; /* 🔥 Adicionando um espaço maior */
+  margin-top: 15px;
 }
 
-/* 🔥 "Aberto sem STR" sempre abaixo do "OU" */
-.extra-step {
-  display: flex;
-  justify-content: center;
-  margin-top: 5px;
-}
-
-/* 🔥 Ajuste responsivo: Some com "OU" quando a tela for muito pequena */
+/* 🔥 Ajuste responsivo */
 @media screen and (max-width: 768px) {
   .separator {
     display: none;
