@@ -27,7 +27,7 @@ export class CicloVidaComponent implements OnInit {
 
   ngOnInit() {
     // 🔥 Simulação de chamada da API (substitua por fetch real)
-    setTimeout(() => this.updateStepsFromAPI('Online - Grade sem STR'), 1000);
+    setTimeout(() => this.updateStepsFromAPI('Offline - Sem Mercado'), 1000);
   }
 
   updateStepsFromAPI(apiResponse: string) {

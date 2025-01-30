@@ -34,7 +34,7 @@
 .arrow-steps .step {
   font-size: 12px;
   text-align: center;
-  color: #666;
+  color: #666; /* 🔥 Mantém a cor do texto */
   cursor: default;
   margin: 3px 2px;
   padding: 6px 14px;
@@ -78,8 +78,18 @@
   background-color: lawngreen;
 }
 
+/* 🔥 Mantém a seta verde nos steps concluídos */
 .arrow-steps .step.done:after {
   border-left: 14px solid lawngreen;
+}
+
+/* 🔥 Adiciona o ✔ corretamente alinhado dentro do step concluído, sem alterar cor */
+.arrow-steps .step.done span::before {
+  content: "✔";
+  font-weight: bold;
+  font-size: 14px;
+  color: inherit; /* 🔥 Mantém a cor original do texto */
+  margin-right: 5px;
 }
 
 /* 🔥 Mantém o step atual com destaque azul */
