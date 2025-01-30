@@ -17,29 +17,42 @@ export class CicloVidaComponent implements OnInit {
     'Offline - Sem Mercado',
     'Offline - Apto para Conciliação',
     'Offline - Conciliação',
-    'Offline - Apto para Pré Abertura',
+    'Offline - Apto para Pré Abertura', // 🔥 Último passo
   ];
 
   currentStatus: string = ''; // 🔥 Status atual vindo da API
   stepsHistory: string[] = []; // 🔥 Histórico do caminho percorrido
+  lastStatusWasFinal: boolean = false; // 🔥 Variável para controlar quando apagar o histórico
 
   constructor() {}
 
   ngOnInit() {
     // 🔥 Simulação de chamada da API (substitua por fetch real)
-    setTimeout(() => this.updateStepsFromAPI('Offline - Sem Mercado'), 1000);
+    setTimeout(() => this.updateStepsFromAPI('Online - Grade sem STR'), 1000);
   }
 
   updateStepsFromAPI(apiResponse: string) {
+    // 🔥 Se o último status foi o final e agora mudou, zeramos o histórico
+    if (
+      this.lastStatusWasFinal &&
+      apiResponse !== 'Offline - Apto para Pré Abertura'
+    ) {
+      this.stepsHistory = [];
+    }
+
     this.currentStatus = apiResponse;
+
+    // 🔥 Verifica se estamos no último status
+    this.lastStatusWasFinal =
+      apiResponse === 'Offline - Apto para Pré Abertura';
 
     // 🔥 Descobre o índice do status atual
     const index = this.statusOrder.indexOf(this.currentStatus);
 
-    // 🔥 Define o caminho percorrido até o status atual
-    this.stepsHistory = this.statusOrder.slice(0, index + 1);
+    // 🔥 Agora pegamos apenas os passos **ANTES** do atual (sem incluir o atual!)
+    this.stepsHistory = this.statusOrder.slice(0, index);
 
-    // 🔥 Garante que "Online - Grade Completa" ou "Aberto sem STR" sejam usados corretamente
+    // 🔥 Garante que "Online - Grade Completa" ou "Online - Grade sem STR" sejam usados corretamente
     if (this.stepsHistory.includes('Online - Grade sem STR')) {
       this.stepsHistory = this.stepsHistory.filter(
         (step) => step !== 'Online - Grade Completa'
@@ -49,6 +62,10 @@ export class CicloVidaComponent implements OnInit {
         (step) => step !== 'Online - Grade sem STR'
       );
     }
+
+    // 🔥 Console.log para depuração
+    console.log('Current Status:', this.currentStatus);
+    console.log('Steps History:', this.stepsHistory);
   }
 
   // 🔥 Método que retorna a classe do step dinamicamente
