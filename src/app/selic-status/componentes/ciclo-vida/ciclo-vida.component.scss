@@ -1,124 +1,133 @@
+/* ciclo-vida.component.scss */
 .container {
-  margin-top: 58px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 20px 0;
+  padding: 0 15px;
   width: 100%;
+  box-sizing: border-box;
   position: relative;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-/* 🔥 Mantém os steps alinhados corretamente sem perder a estrutura original */
 .arrow-steps {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
   flex-wrap: wrap;
-  justify-content: center;
-  max-width: 100%;
   position: relative;
-}
+  width: 100%;
+  gap: 8px;
 
-/* 🔥 Mantém "Online - Grade Completa", "OU" e "Aberto sem STR" agrupados */
-.grupo-online {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .step {
+    position: relative;
+    flex-shrink: 0;
+    padding: 10px 16px;
+    background: white;
+    color: #2d3a6d;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 130px;
+    text-align: center;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    height: 48px;
+    margin: 0 18px 0 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-/* 🔥 Ajuste do tamanho dos steps sem alterar a estrutura original */
-.arrow-steps .step {
-  font-size: 12px;
-  text-align: center;
-  color: #666; /* 🔥 Mantém a cor do texto */
-  cursor: default;
-  margin: 3px 2px;
-  padding: 6px 14px;
-  background-color: #d9e3f7;
-  border-radius: 3px;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: auto;
-  height: 32px;
-  position: relative;
-}
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      border-left: 11px solid #e2e8f0;
+      z-index: 1;
+    }
 
-/* 🔥 Aumentando o tamanho da seta */
-.arrow-steps .step:after,
-.arrow-steps .step:before {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: -14px; /* 🔥 Aumenta um pouco a seta */
-  width: 0;
-  height: 0;
-  border-top: 14px solid transparent;
-  border-bottom: 14px solid transparent;
-  border-left: 14px solid #d9e3f7;
-  z-index: 2;
-  transition: border-color 0.2s ease;
-}
+    &.current {
+      border-color: #3b82f6;
+      background: #f0f4ff;
+      color: #1d4ed8;
+      box-shadow: 0 3px 8px rgba(59, 130, 246, 0.2);
 
-.arrow-steps .step:before {
-  right: auto;
-  left: 0;
-  border-left: 14px solid #fff;
-  z-index: 0;
-}
+      &::after {
+        border-left-color: #3b82f6;
+      }
+    }
+  }
 
-/* 🔥 Mantém os steps concluídos com a cor original */
-.arrow-steps .step.done {
-  background-color: lawngreen;
-}
+  .grupo-online {
+    position: relative;
 
-/* 🔥 Mantém a seta verde nos steps concluídos */
-.arrow-steps .step.done:after {
-  border-left: 14px solid lawngreen;
-}
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      height: 30px;
+      width: 2px;
+      background: #e2e8f0;
+      transform: translateX(-50%);
+    }
 
-/* 🔥 Adiciona o ✔ corretamente alinhado dentro do step concluído, sem alterar cor */
-.arrow-steps .step.done span::before {
-  content: "✔";
-  font-weight: bold;
-  font-size: 14px;
-  color: inherit; /* 🔥 Mantém a cor original do texto */
-  margin-right: 5px;
-}
+    .separator {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      color: #64748b;
+      font-size: 11px;
+      font-weight: bold;
+      background: white;
+      padding: 0 5px;
+      z-index: 3;
+    }
 
-/* 🔥 Mantém o step atual com destaque azul */
-.arrow-steps .step.current {
-  background-color: #23468c;
-  color: white;
-}
+    .extra-step {
+      position: absolute;
+      top: calc(100% + 20px);
+      left: 50%;
+      transform: translateX(-50%);
 
-.arrow-steps .step.current:after {
-  border-left: 14px solid #23468c;
-}
+      .step {
+        font-size: 12px;
+        min-width: 130px;
+        height: 48px;
+        margin: 0;
+      }
+    }
+  }
 
-/* 🔥 Cinza escuro para os steps ignorados */
-.step.ignored {
-  background-color: #b0b0b0;
-  opacity: 0.5;
-}
+  @media (max-width: 1440px) {
+    .step {
+      min-width: 120px;
+      margin-right: 16px;
+      font-size: 11px;
+      padding: 9px 12px;
 
-/* 🔥 "OU" agora tem mais espaçamento para não ficar grudado */
-.separator {
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 5px;
-  margin-top: 15px;
-}
+      &::after {
+        right: -16px;
+        border-left-width: 9px;
+      }
+    }
+  }
 
-/* 🔥 Ajuste responsivo */
-@media screen and (max-width: 768px) {
-  .separator {
-    display: none;
+  @media (max-width: 1280px) {
+    .separator {
+      display: none;
+    }
+  }
+
+  @media screen and(max-width: 768px) {
+    .separator {
+      display: none;
+    }
   }
 }

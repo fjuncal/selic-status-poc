@@ -1,47 +1,44 @@
 <div class="container">
-  <div class="wrapper">
-    <div class="arrow-steps clearfix">
-      <div [class]="getStepClass('Offline - Pré-Abertura')">
-        <span>Offline - Pré-Abertura</span>
-      </div>
-      <div [class]="getStepClass('Offline - Apto para Abertura')">
-        <span>Offline - Apto para Abertura</span>
-      </div>
-      <div [class]="getStepClass('Aberto sem Grade')">
-        <span>Aberto sem Grade</span>
-      </div>
+  <div class="arrow-steps">
+    <!-- Steps anteriores -->
+    <div [class]="getStepClass('Offline - Pré-Abertura')">
+      <span>Offline - Pré-Abertura</span>
+    </div>
+    <div [class]="getStepClass('Offline - Apto para Abertura')">
+      <span>Offline - Apto para Abertura</span>
+    </div>
+    <div [class]="getStepClass('Aberto sem Grade')">
+      <span>Aberto sem Grade</span>
+    </div>
 
-      <!-- 🔥 Mantendo alinhamento correto -->
-      <div class="grupo-online">
-        <div
-          [class]="getStepClass('Online - Grade Completa')"
-          id="online-grade-completa"
-        >
-          <span>Online - Grade Completa</span>
-        </div>
-        <div class="separator">OU</div>
-        <div class="arrow-steps extra-step">
-          <div [class]="getStepClass('Online - Grade sem STR')">
-            <span>Online - Grade sem STR</span>
-          </div>
+    <!-- Grupo Online -->
+    <div class="grupo-online">
+      <div [class]="getStepClass('Online - Grade Completa')">
+        <span>Online - Grade Completa</span>
+      </div>
+      <div class="separator">OU</div>
+      <div class="extra-step">
+        <div [class]="getStepClass('Online - Grade sem STR')">
+          <span>Online - Grade sem STR</span>
         </div>
       </div>
+    </div>
 
-      <div [class]="getStepClass('Online - Grade SPI')">
-        <span>Online - Grade SPI</span>
-      </div>
-      <div [class]="getStepClass('Offline - Sem Mercado')">
-        <span>Offline - Sem Mercado</span>
-      </div>
-      <div [class]="getStepClass('Offline - Apto para Conciliação')">
-        <span>Offline - Apto para Conciliação</span>
-      </div>
-      <div [class]="getStepClass('Offline - Conciliação')">
-        <span>Offline - Conciliação</span>
-      </div>
-      <div [class]="getStepClass('Offline - Apto para Pré Abertura')">
-        <span>Offline - Apto para Pré Abertura</span>
-      </div>
+    <!-- Steps posteriores -->
+    <div [class]="getStepClass('Online - Grade SPI')">
+      <span>Online - Grade SPI</span>
+    </div>
+    <div [class]="getStepClass('Offline - Sem Mercado')">
+      <span>Offline - Sem Mercado</span>
+    </div>
+    <div [class]="getStepClass('Offline - Apto para Conciliação')">
+      <span>Offline - Apto para Conciliação</span>
+    </div>
+    <div [class]="getStepClass('Offline - Conciliação')">
+      <span>Offline - Conciliação</span>
+    </div>
+    <div [class]="getStepClass('Offline - Apto para Pré Abertura')">
+      <span>Offline - Apto para Pré Abertura</span>
     </div>
   </div>
 </div>
