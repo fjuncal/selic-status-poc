@@ -1,42 +1,35 @@
 <h1 class="titulo-principal">Grade Horária</h1>
 
-<div class="container">
-  <div class="card">
-    <div class="title">
-      <div>
-        <h1>SEL01:</h1>
-        <h2 style="color: limegreen">ABERTO</h2>
-      </div>
-    </div>
-    <div class="content">
-      <div class="social">
-        <p>22/04/2002 06:30:00 - 31/12/2049 23:59:59 (Eventual)</p>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="title">
-      <h1>SEL03:</h1>
-      <h2 style="color: limegreen">ABERTO</h2>
-    </div>
-    <div class="content">
-      <div class="social">
-        <p>22/04/2002 06:30:00 - 31/12/2049 23:59:59 (Eventual)</p>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="title">
-      <h1>SEL04:</h1>
-      <h2 style="color: red">FECHADO</h2>
-    </div>
-    <div class="content">
-      <div class="social">
-        <p>09:30:00 - 18:00:00 (Padrão)</p>
-      </div>
-    </div>
-  </div>
+<!-- Exibe mensagem de erro se houver -->
+<div *ngIf="errorMessageGrade; else showGrades">
+  <p class="error-message">{{ errorMessageGrade }}</p>
 </div>
+
+<ng-template #showGrades>
+  <div class="container">
+    <!-- Loop para exibir os dados de cada grade -->
+    <div class="card" *ngFor="let grade of grades">
+      <div class="title">
+        <div>
+          <h1>{{ grade.codigo }}:</h1>
+          <!-- Define a cor com base no status: verde para 'AberTO' e vermelho para 'FECHADA' -->
+          <h2
+            [ngStyle]="{
+              color: grade.status === 'ABERTO' ? 'limegreen' : 'red'
+            }"
+          >
+            {{ grade.status }}
+          </h2>
+        </div>
+      </div>
+      <div class="content">
+        <div class="social">
+          <p>{{ grade.dataHora }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
 
 <hr />
 
